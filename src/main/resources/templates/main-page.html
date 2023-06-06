@@ -20,6 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
     <link rel="stylesheet" href="./CSS/sanitize.css" />
     <!--自作のCSS-->
@@ -109,16 +110,16 @@
     <!--list-->
     <div class="form">
         <select id="js-listSelect1">
-            <option value="">-予約状況-</option>
+            <option value="0">-RESERVE-STATUS-</option>
         </select>
         <select id="js-listSelect2">
-            <option value="">-向け地-</option>
+            <option value="0">-DESTINATION-</option>
         </select>
         <input id="js-searchText" type="text" placeholder="search as words"/>
         <button id="js-searchBtn" href="#"><i class="fas fa-search"></i></button>
     </div>
     <div class="listView">
-        <p class="searchcounts">検索件数: <span id="js-listCounts"></span>件</p>
+        <p class="searchcounts">Number of searches: <span id="js-listCounts"></span>subjects</p>
         <div class="tableView" id="tableContainer"></div>
           
     </div>

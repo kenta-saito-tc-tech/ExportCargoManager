@@ -43,5 +43,10 @@ public class PgExportService implements ExportService {
         return exportDao.findAll(responsibleId);
     }
 
+    @Override
+    public List<ListRecord> cargoSort(int responsibleId, int reserveNum, int destNum, String keyword) {
+        return exportDao.cargoSort(responsibleId, reserveNum, destNum, keyword);
+    }
+
 
 }

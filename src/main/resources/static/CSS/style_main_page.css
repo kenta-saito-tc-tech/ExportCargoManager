@@ -76,7 +76,7 @@ feature
     font-size: 12px;
 }
 .detailBtn{
-    background-color: aquamarine;
+    background-color: rgb(159, 141, 141);
 }
 .detailBtn:hover{
     border-bottom: 2px solid #333;
@@ -98,5 +98,5 @@ feature
     width: 200px; /* 横幅を200pxに設定 */
   }
   th{
-    background-color: wheat;
+    background-color: gainsboro;
   }

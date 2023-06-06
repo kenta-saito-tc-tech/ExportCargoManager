@@ -117,4 +117,22 @@ public class MainRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
         }
     }
+
+    /**
+     * productの並び順変更
+     * @param
+     * @return
+     */
+    @GetMapping("/cargoSort")
+    public List<ListRecord> cargoSort(@RequestParam(name = "searchId") int responsibleId, @RequestParam(name = "changeMenu1") int reserveNum, @RequestParam(name = "changeMenu2") int destNum, @RequestParam(name = "keyword") String keyword){
+        try {
+            System.out.println(responsibleId);
+            var pr = exportService.cargoSort(responsibleId, reserveNum,destNum, keyword);
+            System.out.println(pr);
+            return pr; //ステータスコード200番
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
 }

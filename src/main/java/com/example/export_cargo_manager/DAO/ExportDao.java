@@ -11,4 +11,5 @@ public interface ExportDao {
     public UserRecord findUser(IdPassRecord idPassRecord);
     public List<DestinationRecord> findAllDestination(int id);
     public List<ListRecord> findAll(int responsibleId);
+    public List<ListRecord> cargoSort(int responsibleId, int reserveNum, int destNum, String keyword);
 }
