@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- サイトの説明欄 -->
+    <meta
+      name="Export Cargo Manager"
+      content="Trade Goods Management App: Track, organize, and optimize your inventory, shipments, and sales with real-time updates and intuitive features."
+    />
+    <!--CSSリンク-->
+    <!--Webフォントのリンク３つ-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
+    <link rel="stylesheet" href="./CSS/sanitize.css" />
+    <!--自作のCSS-->
+    <link rel="stylesheet" href="./CSS/style_main_page.css" />
+    <title>Export Cargo Manager</title>
+  </head>
+  <body>
+    <th:block th:insert="./common/header_next"></th:block>
+
+    <!--権限の格納用-->
+    <input id="js-responsibleId" type="hidden" th:value="${session.user.responsibleId}" />
+
+    <!--section-->
+    <section class="section section-sencoundary">
+      <h1 class="section-headline">Functions list</h1>
+      <ul class="grid grid-col-4">
+        <li class="grid-item">
+          <dl class="feature">
+            <!--dlとはデータリストでデータの見出しとコンテンツを結びつける-->
+            <dt class="feature-headline">1. Airline Management</dt>
+            <dd class="feature-img">
+              <a href="#" class="imageButton"
+                ><img src="./image/black-plane.png" width="100" alt="airline"
+              /></a>
+            </dd>
+            <dd class="feature-description">
+              Description: Streamline operations, optimize resources, and
+              enhance efficiency in airline management with our comprehensive
+              software solution.
+            </dd>
+          </dl>
+        </li>
+        <li class="grid-item">
+          <dl class="feature">
+            <!--dlとはデータリストでデータの見出しとコンテンツを結びつける-->
+            <dt class="feature-headline">2. Cargo Management</dt>
+            <dd class="feature-img">
+              <a href="#" class="imageButton"
+                ><img src="./image/box.png" width="100" alt="cargo"
+              /></a>
+            </dd>
+            <dd class="feature-description">
+              Description: Effectively track, organize, and manage your cargo
+              operations with our advanced software, enabling seamless logistics
+              and improved productivity.
+            </dd>
+          </dl>
+        </li>
+        <li class="grid-item">
+          <dl class="feature">
+            <!--dlとはデータリストでデータの見出しとコンテンツを結びつける-->
+            <dt class="feature-headline">3. Load Planning Simulation</dt>
+            <dd class="feature-img">
+              <a href="#" class="imageButton"
+                ><img src="./image/simulator.png" width="100" alt="similation"
+              /></a>
+            </dd>
+            <dd class="feature-description">
+              Description: Utilize our cutting-edge simulation technology to
+              visualize and optimize load planning, maximizing efficiency and
+              reducing costs in transportation logistics.
+            </dd>
+          </dl>
+        </li>
+        <li class="grid-item">
+          <dl class="feature">
+            <!--dlとはデータリストでデータの見出しとコンテンツを結びつける-->
+            <dt class="feature-headline">4. Load Optimization Efficiency</dt>
+            <dd class="feature-img">
+              <a href="#" class="imageButton"
+                ><img
+                  src="./image/project-management.png"
+                  width="100"
+                  alt="efficiecy"
+              /></a>
+            </dd>
+            <dd class="feature-description">
+              Description: Enhance load optimization and maximize efficiency in
+              cargo transportation with our intelligent software, minimizing
+              wasted space and improving profitability.
+            </dd>
+          </dl>
+        </li>
+      </ul>
+    </section>
+
+    <!--list-->
+    <div class="form">
+        <select id="js-listSelect1">
+            <option value="">-予約状況-</option>
+        </select>
+        <select id="js-listSelect2">
+            <option value="">-向け地-</option>
+        </select>
+        <input id="js-searchText" type="text" placeholder="search as words"/>
+        <button id="js-searchBtn" href="#"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="listView">
+        <p class="searchcounts">検索件数: <span id="js-listCounts"></span>件</p>
+        <div class="tableView" id="tableContainer"></div>
+          
+    </div>
+
+
+    <script src="./JS/app_main_page.js"></script>
+  </body>
+</html>

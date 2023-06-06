@@ -1,0 +1,102 @@
+/* .about-description{} */
+
+.section-sencoundary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.grid {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+/* .grid-item{} */
+.grid-col-2 > .grid-item {
+  /*要素2個用*/ /*.grid-col-2の子要素に適用*/
+  width: 50%;
+}
+.grid-col-3 > .grid-item {
+  /*要素3個用*/
+  width: 33.3%;
+}
+.grid-col-4 > .grid-item {
+  /*要素3個用*/
+  width: 25%;
+}
+
+/*
+feature
+*/
+.feature {
+  text-align: center;
+  padding: 0 15px;
+}
+.feature-headline {
+  font-weight: bold;
+  margin: 0 0 20px;
+}
+.feature-img {
+  margin: 0 0 20px;
+}
+.feature-description {
+  text-align: left;
+}
+
+.imageButton {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.imageButton:hover {
+  opacity: 0.5; /* 半透明にする値 */
+}
+
+/* クリック時に点灯させる */
+.imageButton:active {
+  opacity: 3; /* 点灯させる値 */
+}
+
+/*
+リスト
+*/
+.form{
+    text-align: center;
+}
+.listView{
+    text-align: center;
+}
+.searchcounts{
+    font-size: 12px;
+}
+.detailBtn{
+    background-color: aquamarine;
+}
+.detailBtn:hover{
+    border-bottom: 2px solid #333;
+}
+.tableView{
+    border-collapse: collapse;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tableView > tbody, td, tr, th {
+    border: 1px solid black; /* セルのボーダーを設定 */
+    padding: 2px; /* セルの余白を指定 */
+  }
+
+  .tableView > td, th{
+    width: 200px; /* 横幅を200pxに設定 */
+  }
+  th{
+    background-color: wheat;
+  }
