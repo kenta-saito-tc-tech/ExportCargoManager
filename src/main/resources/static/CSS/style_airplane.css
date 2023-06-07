@@ -1,0 +1,67 @@
+/*
+リスト
+*/
+.form{
+    text-align: center;
+}
+.listView{
+    text-align: center;
+}
+.searchcounts{
+    font-size: 12px;
+}
+.detailBtn{
+    background-color: rgb(159, 141, 141);
+}
+.detailBtn:hover{
+    border-bottom: 2px solid #333;
+}
+.tableView{
+    width:max-content;
+    border-collapse: collapse;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.tableView > tbody, td, tr, th {
+    border: 1px solid black; /* セルのボーダーを設定 */
+    padding: 2px; /* セルの余白を指定 */
+  }
+
+  .tableView > td, th{
+    width: 200px; /* 横幅を200pxに設定 */
+  }
+  th{
+    background-color: gainsboro;
+  }
+
+  .changeBtn:hover{
+    border-bottom: 2px solid #333;
+    opacity: 0.5; /* 半透明にする値 */
+}
+
+.button{
+    color: #333;
+    background-color: antiquewhite;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .button:hover{
+    border-bottom: 2px solid #333;
+    opacity: 0.5; /* 半透明にする値 */
+}
+
+.changeBtn{
+    background-color: rgb(198, 252, 234);
+}
+
+.topMessage{
+    margin-top: 150px;
+}
+
+.bottomMessage{
+    margin-top: 30px;
+}

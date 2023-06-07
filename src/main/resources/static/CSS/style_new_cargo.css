@@ -1,0 +1,71 @@
+.redText {
+    color: red;
+  }
+  
+  .insert-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+  
+  .inputEach {
+    vertical-align: middle;
+    margin-bottom: 20px;
+  }
+  
+  .insert-body {
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+  }
+  
+  .inputText {
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 0.4em 0.8em;
+    width: 50%;
+    margin: 4px;
+  }
+  
+  .inputText:focus {
+    border: 1px solid rgba(0, 0, 0, 0.32);
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .inputEach label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .inputEach input,
+  .inputEach select {
+    display: inline-block;
+    width: 300px;
+  }
+  
+  fieldset {
+    border: none;
+  }
+  
+  .button {
+    color: #333;
+    background-color: antiquewhite;
+    text-decoration: none;
+    width: 100px;
+  }
+  
+  .button:hover {
+    border-bottom: 2px solid #333;
+    opacity: 0.5; /* 半透明にする値 */
+  }
+  
+  textarea{
+    width: 300px;
+  }

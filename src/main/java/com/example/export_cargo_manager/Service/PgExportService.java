@@ -34,9 +34,15 @@ public class PgExportService implements ExportService {
     }
 
     @Override
-    public List<DestinationRecord> findAllDestination(int id) {
-        return exportDao.findAllDestination(id);
+    public List<DestinationRecord> selectDestination(int id) {
+        return exportDao.selectDestination(id);
     }
+
+    @Override
+    public List<DestinationRecord> findAllDestination() {
+        return exportDao.findAllDestination();
+    }
+
 
     @Override
     public List<ListRecord> findAll(int responsibleId) {
@@ -46,6 +52,36 @@ public class PgExportService implements ExportService {
     @Override
     public List<ListRecord> cargoSort(int responsibleId, int reserveNum, int destNum, String keyword) {
         return exportDao.cargoSort(responsibleId, reserveNum, destNum, keyword);
+    }
+
+    @Override
+    public List<AirplaneRecord> findAirplaneAll() {
+        return exportDao.findAirplaneAll();
+    }
+
+    @Override
+    public int airplaneUpdate(AirplaneRecord airplaneRecord) {
+        return exportDao.airplaneUpdate(airplaneRecord);
+    }
+
+    @Override
+    public int airplaneDelete(AirplaneRecord airplaneRecord) {
+        return exportDao.airplaneDelete(airplaneRecord);
+    }
+
+    @Override
+    public int insertAirplane(AirplaneRecord airplaneRecord) {
+        return exportDao.insertAirplane(airplaneRecord);
+    }
+
+    @Override
+    public int insertCargo(CargoRecord cargoRecord) {
+        return exportDao.insertCargo(cargoRecord);
+    }
+
+    @Override
+    public CargoRecord findById(int id) {
+        return exportDao.findById(id);
     }
 
 

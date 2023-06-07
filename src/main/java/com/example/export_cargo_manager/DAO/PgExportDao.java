@@ -70,18 +70,30 @@ public class PgExportDao implements ExportDao {
     }
 
     /**
+     * 向け地テーブルの取得
+     *
+     * @param
+     * @return
+     */
+    @Override
+    public List<DestinationRecord> selectDestination(int id) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("responsibleId", id);
+        return jdbcTemplate.query("SELECT * FROM destination WHERE responsible_id = :responsibleId ORDER BY id", param,
+                new DataClassRowMapper<>(DestinationRecord.class));
+    }
+    /**
      * 向け地テーブルの全取得
      *
      * @param
      * @return
      */
     @Override
-    public List<DestinationRecord> findAllDestination(int id) {
-        MapSqlParameterSource param = new MapSqlParameterSource();
-        param.addValue("responsibleId", id);
-        return jdbcTemplate.query("SELECT * FROM destination WHERE responsible_id = :responsibleId ORDER BY id", param,
+    public List<DestinationRecord> findAllDestination() {
+        return jdbcTemplate.query("SELECT * FROM destination ORDER BY id",
                 new DataClassRowMapper<>(DestinationRecord.class));
     }
+
 
     /**
      * ,menuのlistの表示用データ取得
@@ -134,5 +146,118 @@ public class PgExportDao implements ExportDao {
 
         String query = queryBuilder.toString();
         return jdbcTemplate.query(query, new DataClassRowMapper<>(ListRecord.class));
+    }
+    /**
+     * airportテーブル情報全取得
+     * @return
+     */
+    @Override
+    public List<AirplaneRecord> findAirplaneAll() {
+        return jdbcTemplate.query("SELECT * FROM airport ORDER BY id",
+                new DataClassRowMapper<>(AirplaneRecord.class));
+    }
+
+    /**
+     * airportテーブルを更新
+     * @param
+     * @return
+     */
+    @Override
+    public int airplaneUpdate(AirplaneRecord airplaneRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", airplaneRecord.id());
+        param.addValue("mon", airplaneRecord.mon());
+        param.addValue("tue", airplaneRecord.tue());
+        param.addValue("wed", airplaneRecord.wed());
+        param.addValue("thu", airplaneRecord.thu());
+        param.addValue("fri", airplaneRecord.fri());
+        param.addValue("sat", airplaneRecord.sat());
+        param.addValue("sun", airplaneRecord.sun());
+
+        int count = jdbcTemplate.update("UPDATE airport" +
+                " SET mon = :mon,  tue = :tue, wed = :wed, thu = :thu, fri = :fri, sat = :sat, sun = :sun" +
+                " WHERE id = :id",param);
+        return count;
+    }
+
+    /**
+     * airportテーブルを削除
+     * @param
+     * @return
+     */
+    @Override
+    public int airplaneDelete(AirplaneRecord airplaneRecord){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", airplaneRecord.id());
+        int count = jdbcTemplate.update("DELETE FROM airport WHERE id = :id",param);
+        return count;
+    }
+
+    /**
+     * airportの新規追加
+     * @param
+     * @return
+     */
+    @Override
+    public int insertAirplane(AirplaneRecord airplaneRecord){
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("prefix", airplaneRecord.prefix());
+        param.addValue("letterCode", airplaneRecord.letterCode());
+        param.addValue("name", airplaneRecord.name());
+        param.addValue("country", airplaneRecord.country());
+        param.addValue("mon", airplaneRecord.mon());
+        param.addValue("tue", airplaneRecord.tue());
+        param.addValue("wed", airplaneRecord.wed());
+        param.addValue("thu", airplaneRecord.thu());
+        param.addValue("fri", airplaneRecord.fri());
+        param.addValue("sat", airplaneRecord.sat());
+        param.addValue("sun", airplaneRecord.sun());
+        int count = jdbcTemplate.update("INSERT INTO airport" +
+                "(prefix, letter_code, name, country, mon, tue, wed, thu, fri, sat, sun)" +
+                " VALUES (:prefix, :letterCode, :name, :country, :mon, :tue, :wed, :thu, :fri, :sat, :sun)",param);
+        return count == 1 ? count : null;
+    }
+
+    /**
+     * cargoテーブルの新規追加
+     * @param cargoRecord
+     * @return
+     */
+    @Override
+    public int insertCargo(CargoRecord cargoRecord) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("name", cargoRecord.name());
+        param.addValue("destinationId", cargoRecord.destinationId());
+        param.addValue("closeDate", cargoRecord.closeDate());
+        param.addValue("arrivalDate", cargoRecord.arrivalDate());
+        param.addValue("lithium", cargoRecord.lithium());
+        param.addValue("height", cargoRecord.height());
+        param.addValue("width", cargoRecord.width());
+        param.addValue("depth", cargoRecord.depth());
+        param.addValue("weight", cargoRecord.weight());
+        param.addValue("description", cargoRecord.description());
+        param.addValue("reserveStatus", cargoRecord.reserveStatus());
+        param.addValue("createdAt", cargoRecord.createdAt());
+        param.addValue("updatedAt", cargoRecord.updatedAt());
+
+        int count = jdbcTemplate.update("INSERT INTO cargo" +
+                        "(name, destination_id, close_date, arrival_date, lithium, height, width, depth, weight, description, reserve_status, created_at, updated_at)" +
+                        " VALUES (:name, :destinationId, :closeDate, :arrivalDate, :lithium, :height, :width, :depth, :weight, :description, :reserveStatus, :createdAt, :updatedAt)",
+                param);
+        return count == 1 ? count : null;
+    }
+
+    /**
+     * cargoの詳細用データ取得
+     * @param id
+     * @return
+     */
+    @Override
+    public CargoRecord findById(int id) {
+        MapSqlParameterSource param = new MapSqlParameterSource();
+        param.addValue("id", id);
+        var list = jdbcTemplate.query("SELECT * FROM cargo WHERE id = :id",
+                param, new DataClassRowMapper<>(CargoRecord.class));
+        return list.isEmpty() ? null : list.get(0);
     }
 }

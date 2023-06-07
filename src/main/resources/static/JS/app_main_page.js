@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(selectedValue1);
     console.log(selectedValue2);
     console.log(keyWord);
+
+
     //並び替えの情報を渡す
     fetch(`/cargoSort?searchId=${yourResponsibleId}&changeMenu1=${selectedValue1}&changeMenu2=${selectedValue2}&keyword=${keyWord}`)
     .then(
@@ -89,17 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 詳細情報の表示
-  function showProductDetails(product) {
+  function showCargoDetails(cargo) {
     console.log("click");
 
     //IDを検索と受け渡し
-    fetch(`/product?searchId=${product.productId}`).then((res) => {
+    fetch(`/cargo?searchId=${cargo.id}`).then((res) => {
       //RestControllerから受け取った値->res(成功/200 失敗/400)
       if (res.status === 400) {
         console.log("no");
       } else {
         res.json().then((data) => {
-          window.location.href = `/product-detail/${data.id}`; //ControllerのGetに指示を出す
+          console.log(data);
+          window.location.href = `/detail_cargo/${data.id}`; //ControllerのGetに指示を出す
         });
       }
     });
@@ -165,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const cell = document.createElement("td");
       cell.textContent = "INFO";
-      cell.addEventListener("click", () => showProductDetails(cargo));
+      cell.addEventListener("click", () => showCargoDetails(cargo));
       cell.classList.add("detailBtn");
 
       row.appendChild(cell);

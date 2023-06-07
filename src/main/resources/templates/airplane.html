@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- サイトの説明欄 -->
+    <meta
+      name="Export Cargo Manager"
+      content="Trade Goods Management App: Track, organize, and optimize your inventory, shipments, and sales with real-time updates and intuitive features."
+    />
+    <!--CSSリンク-->
+    <!--Webフォントのリンク３つ-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
+    <link rel="stylesheet" href="./CSS/sanitize.css" />
+    <!--自作のCSS-->
+    <link rel="stylesheet" href="./CSS/style_airplane.css" />
+    <title>Export Cargo Manager</title>
+  </head>
+  <body>
+    <th:block th:insert="./common/header_next"></th:block>
+
+    <!--権限の格納用-->
+    <input
+      id="js-responsibleId"
+      type="hidden"
+      th:value="${session.user.responsibleId}"
+    />
+
+    <h2 class="topMessage">ADD NEW AIRPLANE</h2>
+    <div class="tableView" id="js-insertTable"></div>
+
+    <a class="button" id="js-insertBtn">ADD</a>
+
+    <h2 class="bottomMessage">AIRPLANE LIST</h2>
+    <div class="tableView" id="js-tableContainer"></div>
+
+    <a class="button" id="js-deleteBtn">DELETE</a>
+    <a href="/main-page" class="button">BACK</a>
+
+    <script src="./JS/app_airplane.js"></script>
+  </body>
+</html>

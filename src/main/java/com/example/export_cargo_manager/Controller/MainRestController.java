@@ -37,6 +37,7 @@ public class MainRestController {
 
     /**
      * userテーブルの追加
+     *
      * @param
      * @return
      */
@@ -44,7 +45,7 @@ public class MainRestController {
     public ResponseEntity<String> insertProduct(@RequestBody UserRecord userRecord) {
         try {
             UserRecord user = exportService.checkIdExist(userRecord.loginId());
-            if (user == null){
+            if (user == null) {
                 try {
                     int count = exportService.insertUser(userRecord);
                     if (count == 1) {
@@ -56,10 +57,10 @@ public class MainRestController {
                     e.printStackTrace();
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
                 }
-            }else {
+            } else {
                 return new ResponseEntity<>("product_id exists", HttpStatus.BAD_REQUEST);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>("POST request failed", HttpStatus.BAD_REQUEST);
         }
@@ -67,6 +68,7 @@ public class MainRestController {
 
     /**
      * ログイン時のID、PASSチェック
+     *
      * @param idPassRecord
      * @return
      */
@@ -87,7 +89,7 @@ public class MainRestController {
     }
 
     /**
-     * 向け地テーブルの全取得
+     * 向け地テーブルの取得
      *
      * @param
      * @return
@@ -95,7 +97,24 @@ public class MainRestController {
     @GetMapping("/destination")
     public List<DestinationRecord> selectDestination(@RequestParam(name = "searchId") int responsibleId) {
         try {
-            var list = exportService.findAllDestination(responsibleId);
+            var list = exportService.selectDestination(responsibleId);
+            return list; //ステータスコード200番
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * 向け地テーブルの全取得
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/destinations")
+    public List<DestinationRecord> findAllDestination() {
+        try {
+            var list = exportService.findAllDestination();
             return list; //ステータスコード200番
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,10 +124,11 @@ public class MainRestController {
 
     /**
      * ,menuのlistの表示用データ取得
+     *
      * @return
      */
     @GetMapping("/cargos")
-    public List<ListRecord> cargoList(@RequestParam(name = "searchId") int responsibleId){
+    public List<ListRecord> cargoList(@RequestParam(name = "searchId") int responsibleId) {
         try {
             var list = exportService.findAll(responsibleId);
             return list; //ステータスコード200番
@@ -120,15 +140,132 @@ public class MainRestController {
 
     /**
      * productの並び順変更
+     *
      * @param
      * @return
      */
     @GetMapping("/cargoSort")
-    public List<ListRecord> cargoSort(@RequestParam(name = "searchId") int responsibleId, @RequestParam(name = "changeMenu1") int reserveNum, @RequestParam(name = "changeMenu2") int destNum, @RequestParam(name = "keyword") String keyword){
+    public List<ListRecord> cargoSort(@RequestParam(name = "searchId") int responsibleId, @RequestParam(name = "changeMenu1") int reserveNum, @RequestParam(name = "changeMenu2") int destNum, @RequestParam(name = "keyword") String keyword) {
         try {
             System.out.println(responsibleId);
-            var pr = exportService.cargoSort(responsibleId, reserveNum,destNum, keyword);
+            var pr = exportService.cargoSort(responsibleId, reserveNum, destNum, keyword);
             System.out.println(pr);
+            return pr; //ステータスコード200番
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * airplaneテーブル情報全取得
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/airplanes")
+    public List<AirplaneRecord> selectCategories() {
+        try {
+            var list = exportService.findAirplaneAll();
+            return list; //ステータスコード200番
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * airportテーブルの更新
+     *
+     * @param
+     * @return
+     */
+    @PutMapping("/airplaneUpdate")
+    public ResponseEntity<String> categoryUpdate(@RequestBody AirplaneRecord airplaneRecord) {
+        try {
+            int count = exportService.airplaneUpdate(airplaneRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * airportテーブルの削除
+     *
+     * @param
+     * @return
+     */
+    @DeleteMapping("/airplaneDelete")
+    public ResponseEntity<String> categoryDelete(@RequestBody AirplaneRecord airplaneRecord) {
+        try {
+            int count = exportService.airplaneDelete(airplaneRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("DELETE request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("DELETE request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * airportテーブルの追加
+     * @param
+     * @return
+     */
+    @PostMapping("/insertAirplane")
+    public ResponseEntity<String> insertAirplane(@RequestBody AirplaneRecord airplaneRecord) {
+
+        try {
+            int count = exportService.insertAirplane(airplaneRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("POST request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("POST request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * cargoテーブルの追加
+     * @param
+     * @return
+     */
+    @PostMapping("/insertCargo")
+    public ResponseEntity<String> insertCargo(@RequestBody CargoRecord cargoRecord) {
+
+        try {
+            int count = exportService.insertCargo(cargoRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("POST request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("POST request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * cargoの詳細ページ用データ取得用
+     * @param
+     * @return
+     */
+    @GetMapping("/cargo")
+    public CargoRecord cargoIdFind(@RequestParam(name = "searchId") int id){
+        try {
+            var pr = exportService.findById(id);
             return pr; //ステータスコード200番
         } catch (Exception e) {
             e.printStackTrace();

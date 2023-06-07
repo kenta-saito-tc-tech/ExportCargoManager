@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- サイトの説明欄 -->
+    <meta
+      name="Export Cargo Manager"
+      content="Trade Goods Management App: Track, organize, and optimize your inventory, shipments, and sales with real-time updates and intuitive features."
+    />
+    <!--CSSリンク-->
+    <!--Webフォントのリンク３つ-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!--デフォルトの表示用CSS(ブラウザの表示の統一化)-->
+    <link rel="stylesheet" href="./CSS/sanitize.css" />
+    <!--自作のCSS-->
+    <link rel="stylesheet" href="./CSS/style_new_cargo.css" />
+    <link rel="stylesheet" href="./CSS/image3D.css">
+    <title>Export Cargo Manager</title>
+  </head>
+  <body>
+    <th:block th:insert="./common/header_next"></th:block>
+
+    <!--権限の格納用-->
+    <input
+      id="js-responsibleId"
+      type="hidden"
+      th:value="${session.user.responsibleId}"
+    />
+
+    <!--3D-->
+    <div id="js-image3D" class="imageSpace"></div>
+    <button class="button insert-body" id="js-3dButton">REFLECT</button>
+
+    <div class="insert-body">
+      <p>
+        Please add information about your cargo（<span class="redText">※</span
+        >MUST）
+      </p>
+      <fieldset>
+        <div class="inputEach">
+          <label for="js-inputName"><span class="redText">※</span>NAME</label>
+          <input type="text" class="inputText" id="js-inputName" />
+          <span class="redText" id="js-errarName">ERRAR</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-listSelect"
+            ><span class="redText">※</span>DESTINATION</label
+          >
+          <select id="js-listSelect">
+            <option value="0">-select-</option>
+          </select>
+          <span class="redText" id="js-errarRes">please select anything</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputCloseDate"
+            ><span class="redText">※</span>CLOSE-DATE</label
+          >
+          <input
+            type="text"
+            class="inputText"
+            id="js-inputCloseDate"
+            placeholder="ex.2022-06-22"
+          />
+          <span class="redText" id="js-errarCloseDate">ERRAR</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputArrivalDate"
+            ><span class="redText">※</span>CLOSE-DATE</label
+          >
+          <input
+            type="text"
+            class="inputText"
+            id="js-inputArrivalDate"
+            placeholder="ex.2022-06-22"
+          />
+          <span class="redText" id="js-errarArrivalDate">ERRAR</span>
+        </div>
+
+        <div class="inputEach">
+          <label for="js-listLithium"
+            ><span class="redText">※</span>LITHIUM</label
+          >
+          <select id="js-listLithium">
+            <option value="0">-select-</option>
+            <option value="1">YES</option>
+            <option value="2">NO</option>
+          </select>
+          <span class="redText" id="js-errarLithium"
+            >please select anything</span
+          >
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputHeight">HEIGHT</label>
+          <input type="text" class="inputText" id="js-inputHeight" value="100" />
+        </div>
+        <div class="inputEach">
+          <label for="js-inputWidth">WIDTH</label>
+          <input type="text" class="inputText" id="js-inputWidth" value="100" />
+        </div>
+        <div class="inputEach">
+          <label for="js-inputDepth">DEPTH</label>
+          <input type="text" class="inputText" id="js-inputDepth" value="100" />
+        </div>
+        <div class="inputEach">
+          <label for="js-inputWeight">WEIGHT</label>
+          <input type="text" class="inputText" id="js-inputWeight" value="0" />
+        </div>
+
+        <div class="inputEach">
+          <label for="js-inputDescription">DISCRIPTION</label>
+          <textarea
+            name="description"
+            id="js-inputDescription"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        
+      </fieldset>
+
+      <div class="buttons">
+        <a class="button" id="js-insertBtn">ADD</a>
+        <a href="/main-page" class="button">BACK</a>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.js"></script>
+    <script src="./JS/app_new_cargo.js"></script>
+    <script src="./JS/image3D.js"></script>
+  </body>
+</html>

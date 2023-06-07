@@ -71,6 +71,7 @@ feature
 }
 .listView{
     text-align: center;
+    margin-bottom: 100px;
 }
 .searchcounts{
     font-size: 12px;
@@ -80,6 +81,7 @@ feature
 }
 .detailBtn:hover{
     border-bottom: 2px solid #333;
+    opacity: 0.5; /* 半透明にする値 */
 }
 .tableView{
     border-collapse: collapse;
