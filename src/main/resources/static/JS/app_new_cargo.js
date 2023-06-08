@@ -95,11 +95,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (pattern.test(arrivalText)) {
-        errarArrivalDate.style.display = "none";
-      } else {
-        errarArrivalDate.style.display = "block";
-        flg = 1;
-      }
+      errarArrivalDate.style.display = "none";
+    } else {
+      errarArrivalDate.style.display = "block";
+      flg = 1;
+    }
+
+    if (
+      isNaN(heightText) ||
+      isNaN(widthText) ||
+      isNaN(depthText) ||
+      isNaN(weightText)
+    ) {
+      flg = 1;
+
+      window.setTimeout(function () {
+        alert("Between height to weight must be number");
+      }, 1000);
+    }
 
     if (flg === 0) {
       //データ格納用
@@ -113,11 +126,11 @@ document.addEventListener("DOMContentLoaded", () => {
         height: heightText,
         width: widthText,
         depth: depthText,
-        weigh: weightText,
+        weight: weightText,
         description: descText,
         reserveStatus: 2,
         createdAt: "",
-        updatedAt: ""
+        updatedAt: "",
       };
 
       console.log("click");

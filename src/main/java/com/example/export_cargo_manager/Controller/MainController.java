@@ -19,6 +19,9 @@ public class MainController {
      */
     @GetMapping("/index")
     public String firstView() {
+        if (session != null) {
+            session.invalidate(); // セッションを無効化して削除する
+        }
         return "/index";
     }
 
@@ -29,6 +32,9 @@ public class MainController {
      */
     @GetMapping("/new_account")
     public String newAccountView() {
+        if (session != null) {
+            session.invalidate(); // セッションを無効化して削除する
+        }
         return "/new_account";
     }
 
@@ -39,6 +45,9 @@ public class MainController {
      */
     @GetMapping("/login")
     public String loginView() {
+        if (session != null) {
+            session.invalidate(); // セッションを無効化して削除する
+        }
         return "/login";
     }
 
@@ -47,7 +56,11 @@ public class MainController {
      */
     @GetMapping("/main-page")
     public String mainView() {
-        return "//main-page";
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
+        return "/main-page";
     }
 
     /**
@@ -55,6 +68,10 @@ public class MainController {
      */
     @GetMapping("/airplane")
     public String airplaneView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
         return "/airplane";
     }
 
@@ -63,6 +80,10 @@ public class MainController {
      */
     @GetMapping("/new_cargo")
     public String newCargoView() {
+        if (session.getAttribute("user") == null) { //sessionがない場合
+            return "redirect:/index";
+        }
+
         return "/new_cargo";
     }
 

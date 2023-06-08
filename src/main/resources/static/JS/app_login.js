@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "/main-page";
             // 画面推移後にポップアップを表示
             window.setTimeout(function () {
-              alert("login successfuly");
+              alert("login successfully");
             }, 1000);
           } else {
             console.error("LOGIN request failed");

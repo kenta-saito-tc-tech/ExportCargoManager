@@ -20,4 +20,7 @@ public interface ExportDao {
     public int insertAirplane(AirplaneRecord airplaneRecord);
     public int insertCargo(CargoRecord cargoRecord);
     public CargoRecord findById(int id);
+    public int updateCargo(CargoRecord cargoRecord);
+    public int deleteCargo(CargoRecord cargoRecord);
+
 }

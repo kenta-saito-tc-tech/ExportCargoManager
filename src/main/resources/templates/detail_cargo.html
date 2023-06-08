@@ -29,6 +29,9 @@
     <!--自作のCSS-->
     <link rel="stylesheet" href="/CSS/style_new_cargo.css" />
     <link rel="stylesheet" href="/CSS/image3D.css" />
+
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon" href="/image/logistics.png" />
     <title>Export Cargo Manager</title>
   </head>
   <body>
@@ -49,10 +52,7 @@
     <button class="button insert-body" id="js-3dButton">REFLECT</button>
 
     <div class="insert-body">
-      <p>
-        Information about your cargo（<span class="redText">※</span
-        >MUST）
-      </p>
+      <p>Information about your cargo（<span class="redText">※</span>MUST）</p>
       <fieldset>
         <div class="inputEach">
           <label for="js-inputName"><span class="redText">※</span>NAME</label>
@@ -64,8 +64,7 @@
           <label for="js-listSelect"
             ><span class="redText">※</span>DESTINATION</label
           >
-          <select id="js-listSelect">
-          </select>
+          <select id="js-listSelect"></select>
           <span class="redText" id="js-errarRes">please select anything</span>
         </div>
 
@@ -84,7 +83,7 @@
 
         <div class="inputEach">
           <label for="js-inputArrivalDate"
-            ><span class="redText">※</span>CLOSE-DATE</label
+            ><span class="redText">※</span>ARRIVAL-DATE</label
           >
           <input
             type="text"
@@ -110,23 +109,19 @@
 
         <div class="inputEach">
           <label for="js-inputHeight">HEIGHT</label>
-          <input
-            type="text"
-            class="inputText"
-            id="js-inputHeight"
-          />
+          <input type="text" class="inputText" id="js-inputHeight" />
         </div>
         <div class="inputEach">
           <label for="js-inputWidth">WIDTH</label>
-          <input type="text" class="inputText" id="js-inputWidth"/>
+          <input type="text" class="inputText" id="js-inputWidth" />
         </div>
         <div class="inputEach">
           <label for="js-inputDepth">DEPTH</label>
-          <input type="text" class="inputText" id="js-inputDepth"/>
+          <input type="text" class="inputText" id="js-inputDepth" />
         </div>
         <div class="inputEach">
           <label for="js-inputWeight">WEIGHT</label>
-          <input type="text" class="inputText" id="js-inputWeight"/>
+          <input type="text" class="inputText" id="js-inputWeight" />
         </div>
 
         <div class="inputEach">
@@ -140,17 +135,17 @@
         </div>
 
         <div class="inputEach">
-            <label for="js-listReserve"
-              ><span class="redText">※</span>RESERVE-STATUS</label
-            >
-            <select id="js-listReserve">
-              <option value="1">booked</option>
-              <option value="2">not yet</option>
-            </select>
-            <span class="redText" id="js-errarReserve"
-              >please select anything</span
-            >
-          </div>
+          <label for="js-listReserve"
+            ><span class="redText">※</span>RESERVE-STATUS</label
+          >
+          <select id="js-listReserve">
+            <option value="1">booked</option>
+            <option value="2">not yet</option>
+          </select>
+          <span class="redText" id="js-errarReserve"
+            >please select anything</span
+          >
+        </div>
       </fieldset>
 
       <div class="buttons">

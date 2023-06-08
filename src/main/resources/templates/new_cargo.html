@@ -28,7 +28,10 @@
     <link rel="stylesheet" href="./CSS/sanitize.css" />
     <!--自作のCSS-->
     <link rel="stylesheet" href="./CSS/style_new_cargo.css" />
-    <link rel="stylesheet" href="./CSS/image3D.css">
+    <link rel="stylesheet" href="./CSS/image3D.css" />
+
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon" href="./image/logistics.png" />
     <title>Export Cargo Manager</title>
   </head>
   <body>
@@ -82,7 +85,7 @@
 
         <div class="inputEach">
           <label for="js-inputArrivalDate"
-            ><span class="redText">※</span>CLOSE-DATE</label
+            ><span class="redText">※</span>ARRIVAl-DATE</label
           >
           <input
             type="text"
@@ -109,7 +112,12 @@
 
         <div class="inputEach">
           <label for="js-inputHeight">HEIGHT</label>
-          <input type="text" class="inputText" id="js-inputHeight" value="100" />
+          <input
+            type="text"
+            class="inputText"
+            id="js-inputHeight"
+            value="100"
+          />
         </div>
         <div class="inputEach">
           <label for="js-inputWidth">WIDTH</label>
@@ -133,7 +141,6 @@
             rows="10"
           ></textarea>
         </div>
-        
       </fieldset>
 
       <div class="buttons">

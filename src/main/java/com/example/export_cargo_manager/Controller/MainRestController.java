@@ -272,4 +272,51 @@ public class MainRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
         }
     }
+
+    /**
+     * cargoテーブルの更新
+     * @param
+     * @return
+     */
+    @PutMapping("/updateCargo")
+    public ResponseEntity<String> updateCargo(@RequestBody CargoRecord cargoRecord) {
+
+        try {
+            int count = exportService.updateCargo(cargoRecord);
+            if (count == 1) {
+                return new ResponseEntity<>("PUT request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("PUT request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
+
+    /**
+     * cargoテーブルの削除
+     *
+     * @param
+     * @return
+     */
+    @DeleteMapping("/deleteCargo")
+    public ResponseEntity<String> deleteCargo(@RequestBody CargoRecord cargoRecord) {
+        try {
+            System.out.println("----------------------------------------------");
+            System.out.println(cargoRecord);
+            System.out.println("----------------------------------------------");
+            int count = exportService.deleteCargo(cargoRecord);
+            System.out.println(count);
+            System.out.println("----------------------------------------------");
+            if (count == 1) {
+                return new ResponseEntity<>("DELETE request processed", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("DELETE request failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST); //ステータスコード400番
+        }
+    }
 }

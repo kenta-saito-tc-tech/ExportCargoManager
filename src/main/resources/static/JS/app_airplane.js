@@ -209,10 +209,13 @@ document.addEventListener("DOMContentLoaded", () => {
     cell.addEventListener("click", () => updateCategory(data, id));
   }
 
+
+
   //addボタンクリック時処理
   insertBtn.addEventListener("click", function () {
     console.log("click");
     const inputValues = [];
+    const prefixNum = document.getElementById("input1").value;
 
     // 各input要素の値を取得し、inputValues配列に追加
     for (let i = 1; i <= 11; i++) {
@@ -227,10 +230,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (hasNullEmpty) {
       console.log("一つ以上の入力がnullまたは空欄です。");
+      window.setTimeout(function () {
+        alert("Something missing");
+      }, 1000);
+    }else if(isNaN(prefixNum)){
+      console.log("prefixがint型ではないです");
+      window.setTimeout(function () {
+        alert("prefix must be number");
+      }, 1000);
     } else {
       const insertData = {
         id: 0,
-        prefix: document.getElementById("input1").value,
+        prefix: prefixNum,
         letterCode: document.getElementById("input2").value,
         name: document.getElementById("input3").value,
         country: document.getElementById("input4").value,
@@ -256,14 +267,14 @@ document.addEventListener("DOMContentLoaded", () => {
             listAirplaneShow();
             // 画面推移後にポップアップを表示
             window.setTimeout(function () {
-              alert("追加が完了しました");
+              alert("added successfully");
             }, 1000);
           } else {
             console.error("POST request failed");
             errarId.style.display = "block";
             // ポップアップを表示
             window.setTimeout(function () {
-              alert("追加時にエラーが発生しました");
+              alert("add unsuccessfull");
             }, 1000);
           }
         })
@@ -305,13 +316,13 @@ document.addEventListener("DOMContentLoaded", () => {
           listAirplaneShow();
           // ポップアップを表示
           window.setTimeout(function () {
-            alert("削除が完了しました");
+            alert("Deleted successfully");
           }, 1000);
         } else {
           console.error("DELETE request failed");
           // ポップアップを表示
           window.setTimeout(function () {
-            alert("削除時にエラーが発生しました");
+            alert("Delete unsuccesfull");
           }, 1000);
         }
       })
@@ -319,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error:", error);
         // ポップアップを表示
         window.setTimeout(function () {
-          alert("削除時にエラーが発生しました");
+          alert("Delete unsuccesfull");
         }, 1000);
       });
   });
@@ -355,13 +366,13 @@ document.addEventListener("DOMContentLoaded", () => {
           listAirplaneShow();
           // ポップアップを表示
           window.setTimeout(function () {
-            alert("更新が完了しました");
+            alert("Updated successfully");
           }, 1000);
         } else {
           console.error("PUT request failed");
           // ポップアップを表示
           window.setTimeout(function () {
-            alert("更新時にエラーが発生しました");
+            alert("Update unsuccessfull");
           }, 1000);
         }
       })
@@ -369,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error:", error);
         // ポップアップを表示
         window.setTimeout(function () {
-          alert("更新時にエラーが発生しました");
+          alert("Update unsuccessfull");
         }, 1000);
       });
   }

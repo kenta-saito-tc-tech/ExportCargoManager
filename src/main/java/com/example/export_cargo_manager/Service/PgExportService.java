@@ -84,5 +84,15 @@ public class PgExportService implements ExportService {
         return exportDao.findById(id);
     }
 
+    @Override
+    public int updateCargo(CargoRecord cargoRecord) {
+        return exportDao.updateCargo(cargoRecord);
+    }
+
+    @Override
+    public int deleteCargo(CargoRecord cargoRecord) {
+        return exportDao.deleteCargo(cargoRecord);
+    }
+
 
 }
