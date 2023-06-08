@@ -99,8 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
               alert("add your account successfuly");
             }, 1000);
           } else {
-            console.error("POST request failed");
-            errarId.style.display = "block";
+            console.error("failed");
             // ポップアップを表示
             window.setTimeout(function () {
               alert("add your account failed");
