@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const listSelect1 = document.getElementById("js-listSelect1");
   const listSelect2 = document.getElementById("js-listSelect2");
   const listCounts = document.getElementById("js-listCounts");
+  const pageCounts = document.getElementById("js-pageCounts");
+  const pageText = document.getElementById("js-pageText");
   const yourResponsibleId = document.getElementById("js-responsibleId").value;
 
   const searchBtn = document.getElementById("js-searchBtn");
@@ -47,29 +49,25 @@ document.addEventListener("DOMContentLoaded", () => {
     var selectedOption2 = listSelect2.options[selectedIndex2];
     var selectedValue2 = selectedOption2.value;
 
-
-
     const keyWord = document.getElementById("js-searchText").value;
     console.log(selectedValue1);
     console.log(selectedValue2);
     console.log(keyWord);
 
-
     //並び替えの情報を渡す
-    fetch(`/cargoSort?searchId=${yourResponsibleId}&changeMenu1=${selectedValue1}&changeMenu2=${selectedValue2}&keyword=${keyWord}`)
-    .then(
-      (res) => {
-        //RestControllerから受け取った値->res(成功/200 失敗/400)
-        if (res.status === 400) {
-          console.log("no");
-        } else {
-          res.json().then((data) => {
-            console.log(data);
-            listShow(data);
-          });
-        }
+    fetch(
+      `/cargoSort?searchId=${yourResponsibleId}&changeMenu1=${selectedValue1}&changeMenu2=${selectedValue2}&keyword=${keyWord}`
+    ).then((res) => {
+      //RestControllerから受け取った値->res(成功/200 失敗/400)
+      if (res.status === 400) {
+        console.log("no");
+      } else {
+        res.json().then((data) => {
+          console.log(data);
+          listShow(data);
+        });
       }
-    );
+    });
   });
 
   /**
@@ -108,8 +106,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /**
+   * ページの表示切替
+   */
+
+  const itemsPerPage = 10; // 1ページあたりの件数
+  let currentPage = 1; // 現在のページ番号
+
+  const backButton = document.getElementById("backButton");
+  const nextButton = document.getElementById("nextButton");
+
+
   //リスト表示用
   function listShow(data) {
+
+    //ページ切り替え用ボタン（back）
+    backButton.addEventListener("click", () => {
+      console.log(currentPage);
+      if (currentPage > 1) {
+        currentPage--;
+        listProductShow();
+      }
+    });
+    //ページ切り替え用ボタン(next)
+    nextButton.addEventListener("click", () => {
+      const totalPages = Math.ceil(data.length / itemsPerPage);
+      console.log(totalPages);
+      if (currentPage < totalPages) {
+        currentPage++;
+        listProductShow();
+      }
+    });
+
+    //表示するスタート位置
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentPageData = data.slice(startIndex, endIndex);
+
+
     let counts = 0;
     // テーブルをHTMLに追加
     const tableContainer = document.getElementById("tableContainer");
@@ -145,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // テーブルボディの生成
     const tbody = document.createElement("tbody");
-    data.forEach((cargo) => {
+    currentPageData.forEach((cargo) => {
       const row = document.createElement("tr");
       for (const key in cargo) {
         const cell = document.createElement("td");
@@ -181,6 +215,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tableContainer.appendChild(table);
     listCounts.textContent = counts;
+    pageCounts.textContent = currentPage;
+    if(currentPage == 1){
+      pageText.textContent = "page";
+    }else{
+      pageText.textContent = "pages";
+    }
   }
 
   listProductShow();
