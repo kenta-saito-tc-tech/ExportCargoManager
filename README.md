@@ -1,6 +1,20 @@
 # ExportCargoManager
 個人開発のアプリ
 
+## 使用言語、フレームワーク
+### フロント側
+- HTML
+- CSS
+- Javascript
+### バックエンド側
+- Java
+- SQL(Postgres sql)
+### フレームワーク
+- Spring Boot
+### Editor
+- intelij
+- VScode
+
 ## システム概要
 - システム名：**Export cargo managemer**
 - 輸出貨物の一括管理アプリ
