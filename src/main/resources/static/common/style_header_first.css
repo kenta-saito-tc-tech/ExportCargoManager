@@ -19,3 +19,19 @@ header nav ul li a {
   text-decoration: none;
   font-weight: 500;
 }
+
+.headerH1{
+  text-align: right;
+}
+
+.headerImg {
+  width: 50px; /* 幅を指定 */
+  height: auto; /* 高さは自動調整 */
+}
+
+.headerMessage{
+  font-weight: bold; /* フォントの太さを太くする */
+  font-size: 24px; /* フォントサイズを指定 */
+  text-transform: uppercase; /* テキストを大文字に変換 */
+  letter-spacing: 2px; /* 文字間のスペースをあける*/
+}
